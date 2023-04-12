@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+</body>
+
+<canvas width="600" height="400">
+
+</canvas>
+
+<script>
+    //document.write("<h1>Hola mundo</h1>");
+
+    //Conectar canvas con javascript
+    var pantalla = document.querySelector("canvas");
+    var papel = pantalla.getContext("2d");
+
+    //Dibujar un rectangulo 1 -> verde de 350,300 (cabeza)
+    papel.fillStyle = "green";
+    papel.fillRect(0,0,350,300); //x,y,ancho,alto
+
+    //Dibujar un rectangulo 2 -> negro de 90, 90 (ojo izquierdo)
+    papel.fillStyle = "black";
+    papel.fillRect(50,60,90,90);
+
+    //Dibujar un rectangulo 3 -> negro de 90, 90 (ojo derecho)
+    papel.fillStyle = "black";
+    papel.fillRect(210,60,90,90);
+
+    //Dibujar un rectangulo para la naris 70, 100 (nariz).
+    papel.fillStyle = "black";
+    papel.fillRect(140,150,70,100);
+
+    //Rectángulos 5 y 6: 40, 110 (parte de la boca)
+    papel.fillStyle = "black";
+    papel.fillRect(100,190,40,110);
+    papel.fillStyle = "black";
+    papel.fillRect(210,190,40,110);
+</script>
+
+</html>

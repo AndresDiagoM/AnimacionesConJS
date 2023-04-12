@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuadra con JS</title>
+</head>
+
+<body>
+    
+</body>
+
+<canvas width="600" height="400">
+
+</canvas>
+
+<script>
+    //En este nuevo desafío vamos a diseñar una escuadra (plantilla especial en forma de 
+    //un triángulo isósceles usada por arquitectos e ingenieros).
+
+    //Conectar canvas con javascript
+    var pantalla = document.querySelector("canvas");
+    var papel = pantalla.getContext("2d");
+
+    //Pintar canvas de gris (fondo)
+    papel.fillStyle = "lightgray";
+    papel.fillRect(0,0,600,400);
+
+    //Dibujar un triángulo
+    papel.beginPath();
+    papel.moveTo(50,50);
+    papel.lineTo(50,400);
+    papel.lineTo(400,400);
+    papel.closePath();
+    papel.strokeStyle = "black"; //color del borde
+    papel.stroke(); //dibujar el borde
+    papel.fillStyle = "lightblue";
+    papel.fill();
+
+    //Dibujar un traingulo en el interior de color blanco
+    papel.beginPath();
+    papel.moveTo(100,175);
+    papel.lineTo(100,350);
+    papel.lineTo(275,350);
+    papel.closePath();
+    papel.strokeStyle = "black"; //color del borde
+    papel.stroke(); //dibujar el borde
+    papel.fillStyle = "white";
+    papel.fill();
+
+    //Pintar numeros en las aristas del triangulo marcando las coordenadas
+    papel.font = "20px Arial";
+    papel.fillStyle = "black";
+    papel.fillText("(50,400)", 30, 390);
+    papel.fillText("(50,50)", 30, 40);
+    papel.fillText("(400,400)", 390, 390);
+
+</script>
+
+</html>

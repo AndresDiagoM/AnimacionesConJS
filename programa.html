@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+</body>
+
+<canvas width="600" height="400">
+
+</canvas>
+
+<script>
+    //document.write("<h1>Hola mundo</h1>");
+
+    //Conectar canvas con javascript
+    var pantalla = document.querySelector("canvas");
+    var papel = pantalla.getContext("2d");
+
+    //Dibujar un rectangulo
+    papel.fillStyle = "lightgrey";
+    papel.fillRect(0,0,600,400); //x,y,ancho,alto
+
+    //Dibujar un rectangulo verde
+    papel.fillStyle = "green";
+    papel.fillRect(0,0,200,400); //x,y,ancho,alto
+
+    //Dibujar un rectangulo rojo
+    papel.fillStyle = "red";
+    papel.fillRect(400,0,200,400); //x,y,ancho,alto
+
+    //Dibujar un rectangulo amarillo
+    papel.fillStyle = "yellow";
+    papel.beginPath();
+    papel.moveTo(300,200);
+    papel.lineTo(200,400);
+    papel.lineTo(400,400);
+    papel.fill();
+
+    //Dibujar un circulo
+    papel.fillStyle = "blue";
+    papel.beginPath();
+    papel.arc(300,200,50,0,2*Math.PI); //x,y,radio,angulo inicial, angulo final
+    papel.fill();
+
+    //BUCAR 2D CANVAS
+    //Documentacion en https://developer.mozilla.org/es/docs/Web/API/CanvasRenderingContext2D/fillStyle
+</script>
+
+</html>
