@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos en canvas</title>
+</head>
+
+<body>
+    
+</body>
+
+<canvas width="1200" height="1200">
+
+</canvas>
+
+<script>
+    //Conectar canvas con javascript
+    let pantalla = document.querySelector("canvas");
+    let papel = pantalla.getContext("2d");
+
+    //Pintar canvas de gris (fondo)
+    papel.fillStyle = "lightgray";
+    papel.fillRect(0,0,600,400);
+
+    //Datos para dibujar el gráfico
+    var serie2009 = [6, 47, 41, 3, 3];
+    var serie2019 = [81, 9, 3, 3, 4];
+    var colores = ["blue","green","yellow", "red","gray"];
+
+    //Funcion para dibujar texto
+    function escribirTexto(x , y, texto) {
+        let pantalla = document.querySelector("canvas");
+        let pincel = pantalla.getContext("2d");
+
+        pincel.font="15px Georgia";
+        pincel.fillStyle="black";
+        pincel.fillText(texto, x, y);    
+    }
+
+    //Funcion para dibujar el gráfico
+    function dibujarBarra(x, y, array, colores, texto) {
+        let altura=0;
+        for(var i=0; i<array.length; i++){
+            papel.beginPath(); //iniciar el dibujo, para no modificar los anteriores
+            papel.fillStyle = colores[i];
+            //console.log(colores[i])
+
+            papel.rect(x,y+altura,50,array[i]);
+            papel.strokeRect(x,y+altura,50,array[i]);
+
+            altura+=array[i];
+            papel.strokeStyle = "black"; 
+            papel.lineWidth = 1;  //ancho del borde
+            papel.stroke();
+            papel.fill();
+            //console.log(array[i]);
+        }
+        escribirTexto(x,y-20,texto);
+    }
+
+    dibujarBarra(100,100,serie2009,colores,"2009");
+    dibujarBarra(200,100,serie2019,colores,"2019");
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactuando con el usuario</title>
+</head>
+
+<body>
+    
+</body>
+
+<canvas width="600" height="400">
+
+</canvas>
+
+<script>
+    //Conectar canvas con javascript
+    let pantalla = document.querySelector("canvas");
+    let papel = pantalla.getContext("2d");
+
+    //Pintar canvas de gris (fondo)
+    papel.fillStyle = "lightgray";
+    papel.fillRect(0,0,600,400);
+
+    //obtener coordenadas de donde el uusario hace click
+    pantalla.addEventListener("click", dibujarMouse);
+
+    function dibujarMouse(evento){
+        let x = evento.offsetX;
+        let y = evento.offsetY;
+        //console.log("x: " + x + " y: " + y);
+        dibujarCirculo(x, y, 10, "red", "black", 2);
+    }
+
+    //Funcion para dibujar circulos
+    function dibujarCirculo(x, y, radio, color, colorBorde="black", anchoBorde) {        
+        papel.beginPath();
+        papel.fillStyle = color;
+        papel.arc(x, y, radio, 0, 2*3.14);
+        //borde del circulo
+        papel.strokeStyle = colorBorde;
+        papel.lineWidth = anchoBorde;
+        papel.stroke();
+        papel.fill();
+    }
+    
+</script>
+
+</html>

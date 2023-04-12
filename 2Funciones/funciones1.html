@@ -4,58 +4,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escuadra con JS</title>
+    <title>Funciones en canvas</title>
 </head>
 
 <body>
     
 </body>
 
-<canvas width="600" height="400">
+<canvas width="1200" height="1200">
 
 </canvas>
 
 <script>
-    //En este nuevo desafío vamos a diseñar una escuadra (plantilla especial en forma de 
-    //un triángulo isósceles usada por arquitectos e ingenieros).
-
     //Conectar canvas con javascript
-    var pantalla = document.querySelector("canvas");
-    var papel = pantalla.getContext("2d");
+    let pantalla = document.querySelector("canvas");
+    let papel = pantalla.getContext("2d");
 
     //Pintar canvas de gris (fondo)
     papel.fillStyle = "lightgray";
-    papel.fillRect(0,0,600,400);
+    papel.fillRect(0,0,1200,1200);
 
-    //Dibujar un triángulo
-    papel.beginPath();
-    papel.moveTo(50,50);
-    papel.lineTo(50,400);
-    papel.lineTo(400,400);
-    papel.closePath();
-    papel.strokeStyle = "black"; //color del borde
-    papel.stroke(); //dibujar el borde
-    papel.fillStyle = "lightblue";
+    //rectangulo verde con borde
+    papel.fillStyle = "green";
+    papel.rect(50,50,300,300);
+    papel.strokeStyle = "black";
+    papel.strokeRect(50,50,300,300);
+    papel.lineWidth = 5;  //ancho del borde
+    papel.stroke();
     papel.fill();
 
-    //Dibujar un traingulo en el interior de color blanco
-    papel.beginPath();
-    papel.moveTo(100,175);
-    papel.lineTo(100,350);
-    papel.lineTo(275,350);
-    papel.closePath();
-    papel.strokeStyle = "black"; //color del borde
-    papel.stroke(); //dibujar el borde
-    papel.fillStyle = "white";
-    papel.fill();
+    //Funcion para dibujar rectángulos
+    function dibujarRectangulo(x,y,ancho,alto,color,colorBorde, anchoBorde){
+        papel.beginPath(); //iniciar el dibujo, para no modificar los anteriores
+        papel.fillStyle = color;
+        papel.rect(x,y,ancho,alto);
+        papel.strokeStyle = colorBorde;
+        papel.strokeRect(x,y,ancho,alto);
+        papel.lineWidth = anchoBorde;  //ancho del borde
+        papel.stroke();
+        papel.fill();
+    }
 
-    //Pintar numeros en las aristas del triangulo marcando las coordenadas
-    papel.font = "20px Arial";
-    papel.fillStyle = "black";
-    papel.fillText("(50,400)", 30, 390);
-    papel.fillText("(50,50)", 30, 40);
-    papel.fillText("(400,400)", 390, 390);
+    dibujarRectangulo(400,50,50,50,"lightblue","black",5); //
 
+    //Dibujar cuadrados en linea horizontal
+    for (let nCuadrados = 0; nCuadrados < 5; nCuadrados++) {
+        dibujarRectangulo(5,5+(nCuadrados*50),50,50,"lightblue","black",5); //
+    }
+
+    //Funcion para dibujar circulos
+    function dibujarCirculo(x, y, radio, color, colorBorde="black", anchoBorde) {        
+        papel.beginPath();
+        papel.fillStyle = color;
+        papel.arc(x, y, radio, 0, 2*3.14);
+        //borde del circulo
+        papel.strokeStyle = colorBorde;
+        papel.lineWidth = anchoBorde;
+        papel.stroke();
+        papel.fill();
+    }
+    
+    dibujarCirculo(600,100,50,"green","red",5);
+
+    //Dibujar una flor con circulos
+    dibujarCirculo(800,500,50,"red","black",1); //centro
+    dibujarCirculo(901,500,50,"black","black",1); //derecha
+    dibujarCirculo(800,399,50,"yellow","black",1); //arriba
+    dibujarCirculo(699,500,50,"orange","black",1); //izquierda
+    dibujarCirculo(800,601,50,"blue","black",1); //abajo
 </script>
 
 </html>
