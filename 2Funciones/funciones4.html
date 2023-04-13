@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujando un circulo automático</title>
+</head>
+
+<body>
+    
+</body>
+
+<canvas width="600" height="400">
+
+</canvas>
+
+<script>
+    //Conectar canvas con javascript
+    let pantalla = document.querySelector("canvas");
+    let papel = pantalla.getContext("2d");
+
+    //Funcion para dibujar circulos
+    function dibujarCirculo(x, y, radio, color, colorBorde="black", anchoBorde) {        
+        papel.beginPath();
+        papel.fillStyle = color;
+        papel.arc(x, y, radio, 0, 2*3.14);
+        //borde del circulo
+        papel.strokeStyle = colorBorde;
+        papel.lineWidth = anchoBorde;
+        papel.stroke();
+        papel.fill();
+    }
+
+    //Funcion para limpiar pantalla (borrar todo)
+    function limpiarPantalla(){
+        papel.clearRect(0,0,600,400);
+    }
+    
+    //imprimir un mensaje cada cierto tiempo. Se tiene que usar una funcion con setInterval
+    /*setInterval(function(){
+        console.log("Hola");
+    }, 1000);*/
+
+
+    dibujarCirculo(10, 10, 10, "blue", "black", 2);
+
+
+    //funcion de actualizar pantalla
+    let x=0, y=0;
+    function actualizarPantalla(){
+        //limpiar pantalla
+        limpiarPantalla();
+        //dibujar circulo
+        dibujarCirculo(20+x, 20+y, 15, "blue", "black", 2);
+        x++;
+        if(x>600){
+            x=0;
+            y+=20;
+        }
+        if(y>400){
+            y=0;
+        }
+    }
+
+    setInterval(actualizarPantalla, 0.001);
+
+</script>
+
+</html>

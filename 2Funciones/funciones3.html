@@ -24,14 +24,31 @@
     papel.fillStyle = "lightgray";
     papel.fillRect(0,0,600,400);
 
-    //obtener coordenadas de donde el uusario hace click
+    //obtener coordenadas de donde el uusario hace click izquierdo
     pantalla.addEventListener("click", dibujarMouse);
 
+    //cambiar color cuando el usuario hace click derecho
+    pantalla.addEventListener("contextmenu", cambiarColor);
+
+    //funcion que se llama en el evento de click
+    let colorCirculo="blue";
+    function cambiarColor(){
+        //no permitir que se muestre el contextmenu
+        event.preventDefault();
+        
+        if (colorCirculo=="blue"){
+            colorCirculo="red";
+        }else if(colorCirculo=="red"){
+            colorCirculo="green";
+        }else if(colorCirculo=="green"){
+            colorCirculo="blue";
+        }
+    }
     function dibujarMouse(evento){
         let x = evento.offsetX;
         let y = evento.offsetY;
         //console.log("x: " + x + " y: " + y);
-        dibujarCirculo(x, y, 10, "red", "black", 2);
+        dibujarCirculo(x, y, 10, colorCirculo, "black", 2);
     }
 
     //Funcion para dibujar circulos
