@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar como paint</title>
+</head>
+<body>
+    <!-- TITULO: -->
+    <h1>Dibujar como paint</h1>
+
+    <p>Haz click y desliza para dibujar</p>
+
+    <!-- CONTENEDOR DE CANVAS -->
+    <canvas width="600" height="400">
+
+    </canvas>
+
+    <!-- CONTENEDOR DE BOTONES -->
+    <div id="contenedorBotones" style="display: flex; justify-content: space-between;">
+        <a href="funciones5.html"> Anterior </a>
+    </div>
+
+</body>
+
+<script>
+    var pantalla = document.querySelector('canvas');
+    var pincel = pantalla.getContext('2d');
+
+    //Pintar canvas de gris (fondo)
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var puedoDibujar = false;
+
+    //Seleccionar colores para dibujar
+    //Dibujar cuadrado rojo, verde y azul
+    dibujarRectangulo(0,0,50,50,"red","black", 2);
+    dibujarRectangulo(50,0,50,50,"green","black", 2);
+    dibujarRectangulo(100,0,50,50,"blue","black", 2);
+
+    // Funcion para dibujar circulos
+    function dibujarCirculo(evento) {
+        if(puedoDibujar) {
+            var x = evento.pageX - pantalla.offsetLeft;
+            var y = evento.pageY - pantalla.offsetTop;
+            var color; //color por defecto
+            //console.log(x, y);
+            
+            //Si se hizo click en el cuadrado rojo, cambiar color a rojo
+            if(x >= 0 && x <= 50 && y >= 0 && y <= 50){
+                color = "red";
+            }else if(x >= 50 && x <= 100 && y >= 0 && y <= 50){
+                color = "green";
+            }else if(x >= 100 && x <= 150 && y >= 0 && y <= 50){
+                color = "blue";
+            }
+
+            dibujarCirculo2(x, y, 5, color);
+        }
+    }
+
+    // Evento para dibujar circulos al mover el mouse
+    pantalla.onmousemove = dibujarCirculo;
+
+    //Funciones para habilitar y deshabilitar el dibujo
+    function habilitarDibujar() {
+
+        puedoDibujar = true;
+    }
+    function deshabilitarDibujar() {
+
+        puedoDibujar = false;
+    }
+
+    //Eventos para habilitar y deshabilitar el dibujo
+    pantalla.onmousedown = habilitarDibujar;
+    pantalla.onmouseup = deshabilitarDibujar;
+
+
+
+
+
+
+    //Funcion para dibujar rectángulos
+    function dibujarRectangulo(x,y,ancho,alto,color,colorBorde, anchoBorde){
+        pincel.beginPath(); //iniciar el dibujo, para no modificar los anteriores
+        pincel.fillStyle = color;
+        pincel.rect(x,y,ancho,alto);
+        pincel.strokeStyle = colorBorde;
+        pincel.strokeRect(x,y,ancho,alto);
+        pincel.lineWidth = anchoBorde;  //ancho del borde
+        pincel.stroke();
+        pincel.fill();
+    }
+
+    //Funcion para dibujar circulos
+    function dibujarCirculo2(x, y, radio, color) {        
+        pincel.beginPath();
+        pincel.fillStyle = color;
+        pincel.arc(x, y, radio, 0, 2*3.14);
+        pincel.fill();
+    }
+
+</script>
+</html>

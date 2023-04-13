@@ -1,4 +1,5 @@
 # AnimacionesConJS
+<<<<<<< HEAD
 
 This repository contains exercises from the "Lógica de programación: Practicando con juegos y animaciones" course, where we practiced creating games and animations using JavaScript.
 
@@ -25,3 +26,6 @@ To run these exercises on your local machine, follow these steps:
 - [MDN Web Docs - Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
 - [MDN Web Docs - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [w3schools - JavaScript Canvas](https://www.w3schools.com/js/js_canvas.asp)
+=======
+Curso deLógica de programación: Practicando con juegos y animaciones
+>>>>>>> e1e3e50a775483c120e6e3686ac52d5053dc277f

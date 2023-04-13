@@ -13,6 +13,8 @@
 
     <!--Párrafo-->
     <p>Este cambia de posición cada segundo</p>
+    <p>Si da click en el centro, sale una alerta indicando que ha acertado en el blanco.</p>
+
 
     <!-- CONTENEDOR DE CANVAS -->
     <canvas width="600" height="400">
@@ -22,7 +24,7 @@
     <!-- CONTENEDOR DE BOTONES -->
     <div id="contenedorBotones" style="display: flex; justify-content: space-between;">
         <a href="funciones4.html"> Anterior </a>
-        <a href="funciones5.html"> Siguiente </a>
+        <a href="funciones6.html"> Siguiente </a>
     </div>
 
 </body>
@@ -49,10 +51,7 @@
     }
 
     //Funcion para dibujar tiro en el blanco, posiciones aleatorias
-    function dibujarTiroBlanco() {   
-        let x = Math.floor(Math.random() * 600);
-        let y = Math.floor(Math.random() * 400);
-        limpiarPantalla();
+    function dibujarTiroBlanco(x, y) {
         dibujarCirculo(x, y, 50, "red", "black", 2);
         dibujarCirculo(x, y, 30, "white", "black", 2);
         dibujarCirculo(x, y, 10, "red", "black", 2);
@@ -67,23 +66,27 @@
     }
 
     //funcion de actualizar pantalla
-    let x=0, y=0;
     function actualizarPantalla(){
         //limpiar pantalla
         limpiarPantalla();
-        //dibujar circulo
-        //dibujarCirculo(20+x, 20+y, 15, "blue", "black", 2);
-        x++;
-        if(x>600){
-            x=0;
-            y+=20;
-        }
-        if(y>400){
-            y=0;
-        }
+        //dibujar Tito al blanco
+        let x = Math.floor(Math.random() * 600);
+        let y = Math.floor(Math.random() * 400);
+        dibujarTiroBlanco(x, y);
+
+        //añadir evento click al área del canvas
+        pantalla.addEventListener("click", function(evento){
+            //obtener coordenadas del click
+            let xClick = evento.offsetX;
+            let yClick = evento.offsetY;
+            //comparar coordenadas del click con las del tiro
+            if(xClick >= x-10 && xClick <= x+10 && yClick >= y-10 && yClick <= y+10){
+                alert("Has acertado en el blanco");
+            }
+        });
     }
 
-    setInterval(dibujarTiroBlanco, 1000);
+    setInterval(actualizarPantalla, 1000);
     //dibujarTiroBlanco();
 </script>
 
