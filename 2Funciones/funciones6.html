@@ -40,23 +40,30 @@
     dibujarRectangulo(50,0,50,50,"green","black", 2);
     dibujarRectangulo(100,0,50,50,"blue","black", 2);
 
+    //añadir evento de click para seleccionar color
+    pantalla.onclick = seleccionarColor;
+
+    //Funcion para seleccionar color
+    var color;
+    function seleccionarColor(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if(x >= 0 && x <= 50 && y >= 0 && y <= 50) {
+            color = "red";
+        } else if(x >= 50 && x <= 100 && y >= 0 && y <= 50) {
+            color = "green";
+        } else if(x >= 100 && x <= 150 && y >= 0 && y <= 50) {
+            color = "blue";
+        }
+    }
+
     // Funcion para dibujar circulos
     function dibujarCirculo(evento) {
         if(puedoDibujar) {
             var x = evento.pageX - pantalla.offsetLeft;
             var y = evento.pageY - pantalla.offsetTop;
-            var color; //color por defecto
-            //console.log(x, y);
             
-            //Si se hizo click en el cuadrado rojo, cambiar color a rojo
-            if(x >= 0 && x <= 50 && y >= 0 && y <= 50){
-                color = "red";
-            }else if(x >= 50 && x <= 100 && y >= 0 && y <= 50){
-                color = "green";
-            }else if(x >= 100 && x <= 150 && y >= 0 && y <= 50){
-                color = "blue";
-            }
-
             dibujarCirculo2(x, y, 5, color);
         }
     }
