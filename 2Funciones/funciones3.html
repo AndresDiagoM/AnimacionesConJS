@@ -8,12 +8,20 @@
 </head>
 
 <body>
-    
+    <!-- TITULO: Dibujando circulos con evento click -->
+    <h1>Dibujando circulos con evento click</h1>
+
+    <!-- CONTENEDOR DE CANVAS -->
+    <canvas width="600" height="400">
+
+    </canvas>
+
+    <!-- CONTENEDOR DE BOTONES -->
+    <div id="contenedorBotones" style="display: flex; justify-content: space-between;">
+        <a href="funciones2.html"> Anterior </a>
+        <a href="funciones4.html"> Siguiente </a>
+    </div>
 </body>
-
-<canvas width="600" height="400">
-
-</canvas>
 
 <script>
     //Conectar canvas con javascript
@@ -35,7 +43,7 @@
     function cambiarColor(){
         //no permitir que se muestre el contextmenu
         event.preventDefault();
-        
+
         if (colorCirculo=="blue"){
             colorCirculo="red";
         }else if(colorCirculo=="red"){
